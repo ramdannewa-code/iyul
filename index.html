@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Untuk Kamu</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playpen+Sans:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Playpen Sans', cursive, sans-serif;
+            background-color: #FFC0CB; /* Latar belakang pink */
+            color: #4A4A4A;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Kontainer Utama Slide */
+        .container {
+            width: 90%;
+            max-width: 500px;
+            background-color: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(5px);
+            padding: 30px;
+            border-radius: 25px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            text-align: center;
+            position: relative;
+            min-height: 400px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Menyembunyikan slide secara default */
+        .slide {
+            display: none;
+            width: 100%;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        /* Menampilkan slide yang aktif */
+        .slide.active {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Animasi Transisi */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Styling Gambar */
+        .slide-img {
+            max-width: 100%;
+            max-height: 220px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            object-fit: cover;
+        }
+
+        /* Styling Teks */
+        h2, p {
+            font-size: 1.25rem;
+            line-height: 1.6;
+            margin-bottom: 25px;
+            white-space: pre-line; /* Menjaga baris baru tetap rapi */
+            font-weight: 700;
+        }
+
+        /* Input PIN */
+        .pin-container {
+            margin-top: 15px;
+        }
+
+        .pin-input {
+            font-family: 'Playpen Sans', sans-serif;
+            padding: 10px 15px;
+            font-size: 1.1rem;
+            border: 2px solid #FFB6C1;
+            border-radius: 12px;
+            text-align: center;
+            width: 160px;
+            outline: none;
+            letter-spacing: 2px;
+        }
+
+        .error-message {
+            color: #FF4D4D;
+            font-size: 0.9rem;
+            margin-top: 10px;
+            display: none;
+        }
+
+        /* Styling Tombol */
+        button {
+            font-family: 'Playpen Sans', sans-serif;
+            font-weight: bold;
+            background-color: #FF69B4;
+            color: white;
+            border: none;
+            padding: 12px 28px;
+            font-size: 1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 10px rgba(255, 105, 180, 0.3);
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #FF1493;
+            transform: scale(1.05);
+        }
+
+        button:active {
+            transform: scale(0.98);
+        }
+
+        .btn-restart {
+            background-color: #BA55D3;
+            box-shadow: 0 4px 10px rgba(186, 85, 211, 0.3);
+        }
+        
+        .btn-restart:hover {
+            background-color: #9400D3;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+
+        <div class="slide active" id="slide-1">
+            <img src="https://cdn.phototourl.com/free/2026-06-18-253cbbe5-33fd-4b9b-81a9-81e14a53b37a.jpg" alt="Foto Pertama" class="slide-img">
+            <p>Masukkan PIN tanggal ulang tahunmu untuk membuka:</p>
+            <div class="pin-container">
+                <input type="password" id="pin" class="pin-input" placeholder="******" maxlength="6">
+                <div id="error-msg" class="error-message">PIN salah, coba ingat lagi ya..</div>
+            </div>
+            <button onclick="checkPin()" style="margin-top: 20px;">Next</button>
+        </div>
+
+        <div class="slide" id="slide-2">
+            <p>maaf kalo aku nyakitin kamu</p>
+            <button onclick="nextSlide(3)">Next</button>
+        </div>
+
+        <div class="slide" id="slide-3">
+            <p>maaf kalo aku jahat tapi aku ga pernah pergi gara gara perempuan lain</p>
+            <button onclick="nextSlide(4)">Next</button>
+        </div>
+
+        <div class="slide" id="slide-4">
+            <p>aku cuma takut kamu hidup menderita sama aku</p>
+            <button onclick="nextSlide(5)">Next</button>
+        </div>
+
+        <div class="slide" id="slide-5">
+            <p>tapi aku juga janji bakal balik lagi kalo kamu masih sendiri dan hidup aku udah baik baik aja</p>
+            <button onclick="nextSlide(6)">Next</button>
+        </div>
+
+        <div class="slide" id="slide-6">
+            <p>maaf kalo cara aku pergi bikin kamu sakit bangettt, maaf yaa kalo aku jahat</p>
+            <button onclick="nextSlide(7)">Next</button>
+        </div>
+
+        <div class="slide" id="slide-7">
+            <p>selamat ulang tahun yaa
+sekali lagi aku minta maaf
+hidup dengan sehat manusia favorit ku🥺</p>
+            <button onclick="nextSlide(8)">Next</button>
+        </div>
+
+        <div class="slide" id="slide-8">
+            <img src="https://cdn.phototourl.com/free/2026-06-18-5e22c03e-4967-4e74-9a67-30bb08f9fcae.jpg" alt="Foto Kedua" class="slide-img">
+            <p>selamat ulang tahun cantik 😇</p>
+            <button class="btn-restart" onclick="restartToBeginning()">Kembali ke Awal</button>
+        </div>
+
+    </div>
+
+    <script>
+        // Fungsi untuk mengecek PIN di Slide 1
+        function checkPin() {
+            const pinInput = document.getElementById('pin').value;
+            const errorMsg = document.getElementById('error-msg');
+            
+            if (pinInput === "060601") {
+                errorMsg.style.display = "none";
+                nextSlide(2);
+            } else {
+                errorMsg.style.display = "block";
+                document.getElementById('pin').value = ""; // Reset input jika salah
+            }
+        }
+
+        // Fungsi perpindahan slide umum
+        function nextSlide(slideNumber) {
+            // Sembunyikan semua slide
+            const slides = document.querySelectorAll('.slide');
+            slides.forEach(slide => {
+                slide.classList.remove('active');
+            });
+
+            // Tampilkan slide tujuan
+            const targetSlide = document.getElementById('slide-' + slideNumber);
+            if (targetSlide) {
+                targetSlide.classList.add('active');
+            }
+        }
+
+        // Fungsi tombol "Kembali ke Awal" pada slide terakhir
+        function restartToBeginning() {
+            // Reset input PIN
+            document.getElementById('pin').value = "";
+            document.getElementById('error-msg').style.display = "none";
+            // Kembali ke slide 1
+            nextSlide(1);
+        }
+
+        // Izinkan menekan tombol 'Enter' untuk submit PIN
+        document.getElementById('pin').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                checkPin();
+            }
+        });
+    </script>
+</body>
+</html>
